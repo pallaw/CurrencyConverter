@@ -3,8 +3,6 @@ androidGradlePlugin = "8.0.1"
 androidxCore = "1.10.1"
 androidxLifecycle = "2.6.1"
 androidxActivity = "1.7.1"
-androidxComposeBom = "2023.05.01"
-androidxComposeCompiler = "1.4.6"
 androidxHilt = "1.0.0"
 androidxNavigation = "2.5.3"
 androidxRoom = "2.5.1"
@@ -21,25 +19,14 @@ constraintLayout = "2.1.4"
 material = "1.9.0"
 appcompat = "1.6.1"
 okhttp3 = "4.9.1"
+androidxactivity = "1.7.2"
 
 [libraries]
 android-material = { module = "com.google.android.material:material", version.ref = "material" }
 androidx-core-ktx = { module = "androidx.core:core-ktx", version.ref = "androidxCore" }
+androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "androidxactivity" }
 androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
-androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidxActivity" }
-androidx-compose-compiler = { module = "androidx.compose.compiler:compiler", version.ref = "androidxComposeCompiler" }
-androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
-androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3"}
-androidx-compose-ui = { group = "androidx.compose.ui", name = "ui"}
-androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview"}
-androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4"}
-androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling"}
-androidx-compose-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest"}
-androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "androidxHilt" }
-androidx-lifecycle-viewmodel-compose = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "androidxLifecycle" }
-androidx-lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "androidxLifecycle" }
 androidx-lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidxLifecycle" }
-androidx-navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "androidxNavigation" }
 androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "androidxRoom" }
 androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "androidxRoom" }
 androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "androidxRoom" }

@@ -18,8 +18,8 @@ package com.pallaw.currencyconverter.ui.exchangerates
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.pallaw.currencyconverter.ui.model.ConvertedAmount
 import com.pallaw.currencyconverter.domain.usecase.GetExchangeRatesUseCase
-import com.pallaw.currencyconverter.ui.ExchangedMoney
 import com.pallaw.currencyconverter.util.Const
 import com.pallaw.currencyconverter.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -72,14 +72,14 @@ class ExchangeRateViewModel @Inject constructor(
                             val exchangeRateEntryList = exchangeRateMap.toList()
 
                             val fromRate = exchangeRateMap[fromCurrency] ?: 0.0
-                            val exchangedMoneyList = exchangeRateEntryList.map {
+                            val convertedAmountList = exchangeRateEntryList.map {
                                 val toRate = it.second
                                 val convertedAmount = fromAmount!!.times((fromRate / toRate))
                                 val formattedAmount = DecimalFormat("#.##").format(convertedAmount).toDouble()
 
-                                ExchangedMoney(it.first, formattedAmount)
+                                ConvertedAmount(it.first, formattedAmount)
                             }
-                            _exchangeRatesUiState.value = ExchangeRateUiState.Success(exchangedMoneyList)
+                            _exchangeRatesUiState.value = ExchangeRateUiState.Success(convertedAmountList)
                         }
                     }
                 }
@@ -90,7 +90,7 @@ class ExchangeRateViewModel @Inject constructor(
 }
 
 sealed class ExchangeRateUiState {
-    class Success(val convertedRates: List<ExchangedMoney>) : ExchangeRateUiState()
+    class Success(val convertedRates: List<ConvertedAmount>) : ExchangeRateUiState()
     class Failure(val errorText: String) : ExchangeRateUiState()
     object Loading : ExchangeRateUiState()
     object Empty : ExchangeRateUiState()

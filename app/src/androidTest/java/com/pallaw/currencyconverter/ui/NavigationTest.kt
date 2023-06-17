@@ -23,6 +23,7 @@ import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Rule
 import org.junit.Test
 import com.pallaw.currencyconverter.data.di.fakeCurrencys
+import com.pallaw.currencyconverter.ui.exchangerates.ExchangeRateActivity
 
 @HiltAndroidTest
 class NavigationTest {
@@ -31,7 +32,7 @@ class NavigationTest {
     var hiltRule = HiltAndroidRule(this)
 
     @get:Rule(order = 1)
-    val composeTestRule = createAndroidComposeRule<MainActivity>()
+    val composeTestRule = createAndroidComposeRule<ExchangeRateActivity>()
 
     @Test
     fun test1() {
