@@ -3,11 +3,11 @@ package com.pallaw.currencyconverter.data.remote.model
 
 import com.google.gson.annotations.SerializedName
 
-data class LatestRatesResponse(
+data class CurrencyRatesResponse(
     @SerializedName("base")
     val base: String,
     @SerializedName("rates")
-    val rates: Rates,
+    val currencyRates: Map<String, Double>,
     @SerializedName("timestamp")
     val timestamp: Int
 )

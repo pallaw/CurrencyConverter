@@ -3,343 +3,343 @@ package com.pallaw.currencyconverter.data.remote.model
 
 import com.google.gson.annotations.SerializedName
 
-data class Rates(
+class CurrencyRates() {
     @SerializedName("AED")
-    val aED: Double,
+    val aED: Double = 0.0
     @SerializedName("AFN")
-    val aFN: Double,
+    val aFN: Double = 0.0
     @SerializedName("ALL")
-    val aLL: Double,
+    val aLL: Double = 0.0
     @SerializedName("AMD")
-    val aMD: Double,
+    val aMD: Double = 0.0
     @SerializedName("ANG")
-    val aNG: Double,
+    val aNG: Double = 0.0
     @SerializedName("AOA")
-    val aOA: Double,
+    val aOA: Double = 0.0
     @SerializedName("ARS")
-    val aRS: Double,
+    val aRS: Double = 0.0
     @SerializedName("AUD")
-    val aUD: Double,
+    val aUD: Double = 0.0
     @SerializedName("AWG")
-    val aWG: Double,
+    val aWG: Double = 0.0
     @SerializedName("AZN")
-    val aZN: Double,
+    val aZN: Double = 0.0
     @SerializedName("BAM")
-    val bAM: Double,
+    val bAM: Double = 0.0
     @SerializedName("BBD")
-    val bBD: Double,
+    val bBD: Double = 0.0
     @SerializedName("BDT")
-    val bDT: Double,
+    val bDT: Double = 0.0
     @SerializedName("BGN")
-    val bGN: Double,
+    val bGN: Double = 0.0
     @SerializedName("BHD")
-    val bHD: Double,
+    val bHD: Double = 0.0
     @SerializedName("BIF")
-    val bIF: Double,
+    val bIF: Double = 0.0
     @SerializedName("BMD")
-    val bMD: Double,
+    val bMD: Double = 0.0
     @SerializedName("BND")
-    val bND: Double,
+    val bND: Double = 0.0
     @SerializedName("BOB")
-    val bOB: Double,
+    val bOB: Double = 0.0
     @SerializedName("BRL")
-    val bRL: Double,
+    val bRL: Double = 0.0
     @SerializedName("BSD")
-    val bSD: Double,
+    val bSD: Double = 0.0
     @SerializedName("BTC")
-    val bTC: Double,
+    val bTC: Double = 0.0
     @SerializedName("BTN")
-    val bTN: Double,
+    val bTN: Double = 0.0
     @SerializedName("BWP")
-    val bWP: Double,
+    val bWP: Double = 0.0
     @SerializedName("BYN")
-    val bYN: Double,
+    val bYN: Double = 0.0
     @SerializedName("BZD")
-    val bZD: Double,
+    val bZD: Double = 0.0
     @SerializedName("CAD")
-    val cAD: Double,
+    val cAD: Double = 0.0
     @SerializedName("CDF")
-    val cDF: Double,
+    val cDF: Double = 0.0
     @SerializedName("CHF")
-    val cHF: Double,
+    val cHF: Double = 0.0
     @SerializedName("CLF")
-    val cLF: Double,
+    val cLF: Double = 0.0
     @SerializedName("CLP")
-    val cLP: Double,
+    val cLP: Double = 0.0
     @SerializedName("CNH")
-    val cNH: Double,
+    val cNH: Double = 0.0
     @SerializedName("CNY")
-    val cNY: Double,
+    val cNY: Double = 0.0
     @SerializedName("COP")
-    val cOP: Double,
+    val cOP: Double = 0.0
     @SerializedName("CRC")
-    val cRC: Double,
+    val cRC: Double = 0.0
     @SerializedName("CUC")
-    val cUC: Double,
+    val cUC: Double = 0.0
     @SerializedName("CUP")
-    val cUP: Double,
+    val cUP: Double = 0.0
     @SerializedName("CVE")
-    val cVE: Double,
+    val cVE: Double = 0.0
     @SerializedName("CZK")
-    val cZK: Double,
+    val cZK: Double = 0.0
     @SerializedName("DJF")
-    val dJF: Double,
+    val dJF: Double = 0.0
     @SerializedName("DKK")
-    val dKK: Double,
+    val dKK: Double = 0.0
     @SerializedName("DOP")
-    val dOP: Double,
+    val dOP: Double = 0.0
     @SerializedName("DZD")
-    val dZD: Double,
+    val dZD: Double = 0.0
     @SerializedName("EGP")
-    val eGP: Double,
+    val eGP: Double = 0.0
     @SerializedName("ERN")
-    val eRN: Double,
+    val eRN: Double = 0.0
     @SerializedName("ETB")
-    val eTB: Double,
+    val eTB: Double = 0.0
     @SerializedName("EUR")
-    val eUR: Double,
+    val eUR: Double = 0.0
     @SerializedName("FJD")
-    val fJD: Double,
+    val fJD: Double = 0.0
     @SerializedName("FKP")
-    val fKP: Double,
+    val fKP: Double = 0.0
     @SerializedName("GBP")
-    val gBP: Double,
+    val gBP: Double = 0.0
     @SerializedName("GEL")
-    val gEL: Double,
+    val gEL: Double = 0.0
     @SerializedName("GGP")
-    val gGP: Double,
+    val gGP: Double = 0.0
     @SerializedName("GHS")
-    val gHS: Double,
+    val gHS: Double = 0.0
     @SerializedName("GIP")
-    val gIP: Double,
+    val gIP: Double = 0.0
     @SerializedName("GMD")
-    val gMD: Double,
+    val gMD: Double = 0.0
     @SerializedName("GNF")
-    val gNF: Double,
+    val gNF: Double = 0.0
     @SerializedName("GTQ")
-    val gTQ: Double,
+    val gTQ: Double = 0.0
     @SerializedName("GYD")
-    val gYD: Double,
+    val gYD: Double = 0.0
     @SerializedName("HKD")
-    val hKD: Double,
+    val hKD: Double = 0.0
     @SerializedName("HNL")
-    val hNL: Double,
+    val hNL: Double = 0.0
     @SerializedName("HRK")
-    val hRK: Double,
+    val hRK: Double = 0.0
     @SerializedName("HTG")
-    val hTG: Double,
+    val hTG: Double = 0.0
     @SerializedName("HUF")
-    val hUF: Double,
+    val hUF: Double = 0.0
     @SerializedName("IDR")
-    val iDR: Double,
+    val iDR: Double = 0.0
     @SerializedName("ILS")
-    val iLS: Double,
+    val iLS: Double = 0.0
     @SerializedName("IMP")
-    val iMP: Double,
+    val iMP: Double = 0.0
     @SerializedName("INR")
-    val iNR: Double,
+    val iNR: Double = 0.0
     @SerializedName("IQD")
-    val iQD: Double,
+    val iQD: Double = 0.0
     @SerializedName("IRR")
-    val iRR: Double,
+    val iRR: Double = 0.0
     @SerializedName("ISK")
-    val iSK: Double,
+    val iSK: Double = 0.0
     @SerializedName("JEP")
-    val jEP: Double,
+    val jEP: Double = 0.0
     @SerializedName("JMD")
-    val jMD: Double,
+    val jMD: Double = 0.0
     @SerializedName("JOD")
-    val jOD: Double,
+    val jOD: Double = 0.0
     @SerializedName("JPY")
-    val jPY: Double,
+    val jPY: Double = 0.0
     @SerializedName("KES")
-    val kES: Double,
+    val kES: Double = 0.0
     @SerializedName("KGS")
-    val kGS: Double,
+    val kGS: Double = 0.0
     @SerializedName("KHR")
-    val kHR: Double,
+    val kHR: Double = 0.0
     @SerializedName("KMF")
-    val kMF: Double,
+    val kMF: Double = 0.0
     @SerializedName("KPW")
-    val kPW: Double,
+    val kPW: Double = 0.0
     @SerializedName("KRW")
-    val kRW: Double,
+    val kRW: Double = 0.0
     @SerializedName("KWD")
-    val kWD: Double,
+    val kWD: Double = 0.0
     @SerializedName("KYD")
-    val kYD: Double,
+    val kYD: Double = 0.0
     @SerializedName("KZT")
-    val kZT: Double,
+    val kZT: Double = 0.0
     @SerializedName("LAK")
-    val lAK: Double,
+    val lAK: Double = 0.0
     @SerializedName("LBP")
-    val lBP: Double,
+    val lBP: Double = 0.0
     @SerializedName("LKR")
-    val lKR: Double,
+    val lKR: Double = 0.0
     @SerializedName("LRD")
-    val lRD: Double,
+    val lRD: Double = 0.0
     @SerializedName("LSL")
-    val lSL: Double,
+    val lSL: Double = 0.0
     @SerializedName("LYD")
-    val lYD: Double,
+    val lYD: Double = 0.0
     @SerializedName("MAD")
-    val mAD: Double,
+    val mAD: Double = 0.0
     @SerializedName("MDL")
-    val mDL: Double,
+    val mDL: Double = 0.0
     @SerializedName("MGA")
-    val mGA: Double,
+    val mGA: Double = 0.0
     @SerializedName("MKD")
-    val mKD: Double,
+    val mKD: Double = 0.0
     @SerializedName("MMK")
-    val mMK: Double,
+    val mMK: Double = 0.0
     @SerializedName("MNT")
-    val mNT: Double,
+    val mNT: Double = 0.0
     @SerializedName("MOP")
-    val mOP: Double,
+    val mOP: Double = 0.0
     @SerializedName("MRU")
-    val mRU: Double,
+    val mRU: Double = 0.0
     @SerializedName("MUR")
-    val mUR: Double,
+    val mUR: Double = 0.0
     @SerializedName("MVR")
-    val mVR: Double,
+    val mVR: Double = 0.0
     @SerializedName("MWK")
-    val mWK: Double,
+    val mWK: Double = 0.0
     @SerializedName("MXN")
-    val mXN: Double,
+    val mXN: Double = 0.0
     @SerializedName("MYR")
-    val mYR: Double,
+    val mYR: Double = 0.0
     @SerializedName("MZN")
-    val mZN: Double,
+    val mZN: Double = 0.0
     @SerializedName("NAD")
-    val nAD: Double,
+    val nAD: Double = 0.0
     @SerializedName("NGN")
-    val nGN: Double,
+    val nGN: Double = 0.0
     @SerializedName("NIO")
-    val nIO: Double,
+    val nIO: Double = 0.0
     @SerializedName("NOK")
-    val nOK: Double,
+    val nOK: Double = 0.0
     @SerializedName("NPR")
-    val nPR: Double,
+    val nPR: Double = 0.0
     @SerializedName("NZD")
-    val nZD: Double,
+    val nZD: Double = 0.0
     @SerializedName("OMR")
-    val oMR: Double,
+    val oMR: Double = 0.0
     @SerializedName("PAB")
-    val pAB: Double,
+    val pAB: Double = 0.0
     @SerializedName("PEN")
-    val pEN: Double,
+    val pEN: Double = 0.0
     @SerializedName("PGK")
-    val pGK: Double,
+    val pGK: Double = 0.0
     @SerializedName("PHP")
-    val pHP: Double,
+    val pHP: Double = 0.0
     @SerializedName("PKR")
-    val pKR: Double,
+    val pKR: Double = 0.0
     @SerializedName("PLN")
-    val pLN: Double,
+    val pLN: Double = 0.0
     @SerializedName("PYG")
-    val pYG: Double,
+    val pYG: Double = 0.0
     @SerializedName("QAR")
-    val qAR: Double,
+    val qAR: Double = 0.0
     @SerializedName("RON")
-    val rON: Double,
+    val rON: Double = 0.0
     @SerializedName("RSD")
-    val rSD: Double,
+    val rSD: Double = 0.0
     @SerializedName("RUB")
-    val rUB: Double,
+    val rUB: Double = 0.0
     @SerializedName("RWF")
-    val rWF: Double,
+    val rWF: Double = 0.0
     @SerializedName("SAR")
-    val sAR: Double,
+    val sAR: Double = 0.0
     @SerializedName("SBD")
-    val sBD: Double,
+    val sBD: Double = 0.0
     @SerializedName("SCR")
-    val sCR: Double,
+    val sCR: Double = 0.0
     @SerializedName("SDG")
-    val sDG: Double,
+    val sDG: Double = 0.0
     @SerializedName("SEK")
-    val sEK: Double,
+    val sEK: Double = 0.0
     @SerializedName("SGD")
-    val sGD: Double,
+    val sGD: Double = 0.0
     @SerializedName("SHP")
-    val sHP: Double,
+    val sHP: Double = 0.0
     @SerializedName("SLL")
-    val sLL: Double,
+    val sLL: Double = 0.0
     @SerializedName("SOS")
-    val sOS: Double,
+    val sOS: Double = 0.0
     @SerializedName("SRD")
-    val sRD: Double,
+    val sRD: Double = 0.0
     @SerializedName("SSP")
-    val sSP: Double,
+    val sSP: Double = 0.0
     @SerializedName("STD")
-    val sTD: Double,
+    val sTD: Double = 0.0
     @SerializedName("STN")
-    val sTN: Double,
+    val sTN: Double = 0.0
     @SerializedName("SVC")
-    val sVC: Double,
+    val sVC: Double = 0.0
     @SerializedName("SYP")
-    val sYP: Double,
+    val sYP: Double = 0.0
     @SerializedName("SZL")
-    val sZL: Double,
+    val sZL: Double = 0.0
     @SerializedName("THB")
-    val tHB: Double,
+    val tHB: Double = 0.0
     @SerializedName("TJS")
-    val tJS: Double,
+    val tJS: Double = 0.0
     @SerializedName("TMT")
-    val tMT: Double,
+    val tMT: Double = 0.0
     @SerializedName("TND")
-    val tND: Double,
+    val tND: Double = 0.0
     @SerializedName("TOP")
-    val tOP: Double,
+    val tOP: Double = 0.0
     @SerializedName("TRY")
-    val tRY: Double,
+    val tRY: Double = 0.0
     @SerializedName("TTD")
-    val tTD: Double,
+    val tTD: Double = 0.0
     @SerializedName("TWD")
-    val tWD: Double,
+    val tWD: Double = 0.0
     @SerializedName("TZS")
-    val tZS: Double,
+    val tZS: Double = 0.0
     @SerializedName("UAH")
-    val uAH: Double,
+    val uAH: Double = 0.0
     @SerializedName("UGX")
-    val uGX: Double,
+    val uGX: Double = 0.0
     @SerializedName("USD")
-    val uSD: Double,
+    val uSD: Double = 0.0
     @SerializedName("UYU")
-    val uYU: Double,
+    val uYU: Double = 0.0
     @SerializedName("UZS")
-    val uZS: Double,
+    val uZS: Double = 0.0
     @SerializedName("VES")
-    val vES: Double,
+    val vES: Double = 0.0
     @SerializedName("VND")
-    val vND: Double,
+    val vND: Double = 0.0
     @SerializedName("VUV")
-    val vUV: Double,
+    val vUV: Double = 0.0
     @SerializedName("WST")
-    val wST: Double,
+    val wST: Double = 0.0
     @SerializedName("XAF")
-    val xAF: Double,
+    val xAF: Double = 0.0
     @SerializedName("XAG")
-    val xAG: Double,
+    val xAG: Double = 0.0
     @SerializedName("XAU")
-    val xAU: Double,
+    val xAU: Double = 0.0
     @SerializedName("XCD")
-    val xCD: Double,
+    val xCD: Double = 0.0
     @SerializedName("XDR")
-    val xDR: Double,
+    val xDR: Double = 0.0
     @SerializedName("XOF")
-    val xOF: Double,
+    val xOF: Double = 0.0
     @SerializedName("XPD")
-    val xPD: Double,
+    val xPD: Double = 0.0
     @SerializedName("XPF")
-    val xPF: Double,
+    val xPF: Double = 0.0
     @SerializedName("XPT")
-    val xPT: Double,
+    val xPT: Double = 0.0
     @SerializedName("YER")
-    val yER: Double,
+    val yER: Double = 0.0
     @SerializedName("ZAR")
-    val zAR: Double,
+    val zAR: Double = 0.0
     @SerializedName("ZMW")
-    val zMW: Double,
+    val zMW: Double = 0.0
     @SerializedName("ZWL")
-    val zWL: Double
-)
+    val zWL: Double = 0.0
+}

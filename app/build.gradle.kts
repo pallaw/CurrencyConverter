@@ -135,4 +135,5 @@ dependencies {
     //retrofit
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.gson)
+    implementation(libs.okhttp3.logging.interceptor)
 }

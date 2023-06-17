@@ -1,8 +1,8 @@
 package com.pallaw.currencyconverter.util
 
-import com.pallaw.currencyconverter.data.remote.model.Rates
+import com.pallaw.currencyconverter.data.remote.model.CurrencyRates
 
-fun Rates.getRateFromString(rateString: String) = when(rateString) {
+fun CurrencyRates.getRateFromString(rateString: String) = when(rateString) {
     "AED" -> this.aED
     "AFN" -> this.aFN
     "ALL" -> this.aFN

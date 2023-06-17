@@ -1,11 +1,11 @@
 package com.pallaw.currencyconverter.data.remote
 
-import com.pallaw.currencyconverter.data.remote.model.LatestRatesResponse
+import com.pallaw.currencyconverter.data.remote.model.CurrencyRatesResponse
 import retrofit2.Response
 import retrofit2.http.GET
 
 interface CurrencyConverterAPI {
 
-    @GET("/latest.json")
-    suspend fun getLatestRates(): Response<LatestRatesResponse>
+    @GET("/latest.json?app_id=c8df302360cb4b7b9612c0868908bc19")
+    suspend fun getLatestRates(): Response<CurrencyRatesResponse>
 }
