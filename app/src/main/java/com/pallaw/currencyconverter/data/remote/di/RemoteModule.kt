@@ -1,6 +1,6 @@
 package com.pallaw.currencyconverter.data.remote.di
 
-import com.pallaw.currencyconverter.data.remote.CurrencyConverterAPI
+import com.pallaw.currencyconverter.data.remote.ExchangeRateService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,12 +19,12 @@ object RemoteModule {
 
     @Singleton
     @Provides
-    fun provideCurrencyApi(client: OkHttpClient): CurrencyConverterAPI = Retrofit.Builder()
+    fun provideExchangeRateService(client: OkHttpClient): ExchangeRateService = Retrofit.Builder()
         .baseUrl(BASE_URL)
         .client(client)
         .addConverterFactory(GsonConverterFactory.create())
         .build()
-        .create(CurrencyConverterAPI::class.java)
+        .create(ExchangeRateService::class.java)
 
     @Singleton
     @Provides

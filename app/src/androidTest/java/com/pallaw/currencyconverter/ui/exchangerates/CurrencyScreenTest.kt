@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.pallaw.currencyconverter.ui.currency
+package com.pallaw.currencyconverter.ui.exchangerates
 
 import androidx.activity.ComponentActivity
 import androidx.compose.ui.test.junit4.createAndroidComposeRule

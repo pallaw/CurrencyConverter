@@ -14,17 +14,10 @@
  * limitations under the License.
  */
 
-package com.pallaw.currencyconverter.ui.currency
+package com.pallaw.currencyconverter.ui.exchangerates
 
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.test.runTest
-import org.junit.Assert.assertEquals
-import org.junit.Test
-import com.pallaw.currencyconverter.domain.CurrencyRepository
 
 /**
  * Example local unit test, which will execute on the development machine (host).

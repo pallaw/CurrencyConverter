@@ -20,7 +20,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.components.SingletonComponent
 import dagger.hilt.testing.TestInstallIn
-import com.pallaw.currencyconverter.domain.CurrencyRepository
+import com.pallaw.currencyconverter.domain.ExchangeRateRepositoryInterface
 import com.pallaw.currencyconverter.data.di.DataModule
 import com.pallaw.currencyconverter.data.di.FakeCurrencyRepository
 
@@ -34,5 +34,5 @@ interface FakeDataModule {
     @Binds
     abstract fun bindRepository(
         fakeRepository: FakeCurrencyRepository
-    ): CurrencyRepository
+    ): ExchangeRateRepositoryInterface
 }

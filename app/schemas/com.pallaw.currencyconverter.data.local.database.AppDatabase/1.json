@@ -2,29 +2,35 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "50b7380d6178715fe92bd991be9f23f4",
+    "identityHash": "0ba2f08d47c920a4782f0a14c42f9576",
     "entities": [
       {
-        "tableName": "Currency",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`name` TEXT NOT NULL, `uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
+        "tableName": "exchange_rates",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`base` TEXT NOT NULL, `timestamp` INTEGER NOT NULL, `rates` TEXT NOT NULL, PRIMARY KEY(`base`))",
         "fields": [
           {
-            "fieldPath": "name",
-            "columnName": "name",
+            "fieldPath": "base",
+            "columnName": "base",
             "affinity": "TEXT",
             "notNull": true
           },
           {
-            "fieldPath": "uid",
-            "columnName": "uid",
+            "fieldPath": "timestamp",
+            "columnName": "timestamp",
             "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rates",
+            "columnName": "rates",
+            "affinity": "TEXT",
             "notNull": true
           }
         ],
         "primaryKey": {
-          "autoGenerate": true,
+          "autoGenerate": false,
           "columnNames": [
-            "uid"
+            "base"
           ]
         },
         "indices": [],
@@ -34,7 +40,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '50b7380d6178715fe92bd991be9f23f4')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '0ba2f08d47c920a4782f0a14c42f9576')"
     ]
   }
 }

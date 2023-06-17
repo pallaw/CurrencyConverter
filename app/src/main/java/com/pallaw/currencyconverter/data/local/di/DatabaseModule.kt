@@ -2,13 +2,14 @@ package com.pallaw.currencyconverter.data.local.di
 
 import android.content.Context
 import androidx.room.Room
+import com.pallaw.currencyconverter.data.local.database.AppDatabase
+import com.pallaw.currencyconverter.data.local.database.dao.ExchangeRateDao
+import com.pallaw.currencyconverter.data.remote.model.ExchangeRateDto
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import com.pallaw.currencyconverter.data.local.database.AppDatabase
-import com.pallaw.currencyconverter.data.local.database.dao.CurrencyDao
 import javax.inject.Singleton
 
 
@@ -16,8 +17,8 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 class DatabaseModule {
     @Provides
-    fun provideCurrencyDao(appDatabase: AppDatabase): CurrencyDao {
-        return appDatabase.currencyDao()
+    fun provideCurrencyDao(appDatabase: AppDatabase): ExchangeRateDao {
+        return appDatabase.exchangeRateDao()
     }
 
     @Provides
@@ -26,7 +27,7 @@ class DatabaseModule {
         return Room.databaseBuilder(
             appContext,
             AppDatabase::class.java,
-            "Currency"
+            "ExchangeRate"
         ).build()
     }
 }

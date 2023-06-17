@@ -18,16 +18,10 @@ package com.pallaw.currencyconverter.data
 
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.test.runTest
-import org.junit.Assert.assertEquals
-import org.junit.Test
-import com.pallaw.currencyconverter.data.local.database.entity.Currency
-import com.pallaw.currencyconverter.data.local.database.dao.CurrencyDao
 
 /**
- * Unit tests for [DefaultCurrencyRepository].
+ * Unit tests for [ExchangeRateRepositoryInterface].
  */
 @OptIn(ExperimentalCoroutinesApi::class) // TODO: Remove when stable
 class DefaultCurrencyRepositoryTest {

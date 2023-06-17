@@ -17,12 +17,14 @@
 package com.pallaw.currencyconverter.ui
 
 import android.os.Bundle
-import android.util.Log
+import android.text.InputType
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
+import androidx.core.widget.doAfterTextChanged
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -32,8 +34,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.pallaw.currencyconverter.databinding.ItemCurrencyDropdownBinding
 import com.pallaw.currencyconverter.databinding.MainActivityBinding
-import com.pallaw.currencyconverter.ui.currency.CurrencyEvent
-import com.pallaw.currencyconverter.ui.currency.CurrencyViewModel
+import com.pallaw.currencyconverter.ui.exchangerates.ExchangeRateUiState
+import com.pallaw.currencyconverter.ui.exchangerates.ExchangeRateViewModel
 import com.pallaw.currencyconverter.util.Const
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -42,19 +44,28 @@ const val TAG = "CurrencyConverter"
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    private lateinit var mainActivityBinding: MainActivityBinding
-    private val viewmodel:CurrencyViewModel by viewModels()
+    private lateinit var binding: MainActivityBinding
+    private val viewmodel:ExchangeRateViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mainActivityBinding = MainActivityBinding.inflate(layoutInflater)
-        setContentView(mainActivityBinding.root)
+        binding = MainActivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, Const.currencyCodes)
-        mainActivityBinding.autoCompleteTextView.setAdapter(arrayAdapter)
+        binding.autoCompleteTextView.apply {
+            inputType = InputType.TYPE_NULL
+            setAdapter(arrayAdapter)
+            setText(adapter.getItem(0).toString(), false)
+            setOnItemClickListener { parent, view, position, id ->
+                val selectedItem = parent.getItemAtPosition(position) as String
+                viewmodel.convertRates(binding.edtAmount.text.toString(), selectedItem)
+            }
+        }
+
 
         val convertedAmountsAdapter = ConvertedAmountsAdapter()
-        mainActivityBinding.rvConvertedAmounts.apply {
+        binding.rvConvertedAmounts.apply {
             setHasFixedSize(true)
             adapter = convertedAmountsAdapter
             layoutManager = LinearLayoutManager(this@MainActivity)
@@ -63,46 +74,47 @@ class MainActivity : ComponentActivity() {
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewmodel.conversion.collect { uiState ->
+                viewmodel.exchangeRatesUiState.collect { uiState ->
                     when (uiState) {
-                        CurrencyEvent.Empty -> Log.d(TAG, "empty")
-                        is CurrencyEvent.Failure -> Log.d(TAG, "failure: ${uiState.errorText}")
-                        CurrencyEvent.Loading -> Log.d(TAG, "loading")
-                        is CurrencyEvent.Success -> {
-                            Log.d(TAG, "Success: ${uiState.convertedRates}")
-
+                        ExchangeRateUiState.Empty -> Toast.makeText(this@MainActivity, "Empty", Toast.LENGTH_SHORT).show()
+                        is ExchangeRateUiState.Failure -> Toast.makeText(this@MainActivity, "Error ${uiState.errorText}", Toast.LENGTH_SHORT).show()
+                        ExchangeRateUiState.Loading -> Toast.makeText(this@MainActivity, "Loading Data", Toast.LENGTH_SHORT).show()
+                        is ExchangeRateUiState.Success -> {
+                            Toast.makeText(this@MainActivity, "Success: ${uiState.convertedRates}", Toast.LENGTH_SHORT).show()
                             convertedAmountsAdapter.submitList(uiState.convertedRates)
-
                         }
                     }
                 }
             }
         }
 
-        viewmodel.convertRates(
-            "1",
-            "USD"
-        )
 
+
+        binding.edtAmount.doAfterTextChanged {
+            viewmodel.convertRates(
+                it?.toString() ?: "",
+                binding.autoCompleteTextView.text.toString()
+            )
+        }
 
     }
 }
 
-data class CurrencyAmount(
+data class ExchangedMoney(
     val currency: String,
     val value: Double
 )
 
 class ConvertedAmountsAdapter :
-    ListAdapter<CurrencyAmount, ConvertedAmountViewHolder>(ConvertedAmountDiff) {
-    object ConvertedAmountDiff : DiffUtil.ItemCallback<CurrencyAmount>() {
-        override fun areItemsTheSame(oldItem: CurrencyAmount, newItem: CurrencyAmount): Boolean {
+    ListAdapter<ExchangedMoney, ConvertedAmountViewHolder>(ConvertedAmountDiff) {
+    object ConvertedAmountDiff : DiffUtil.ItemCallback<ExchangedMoney>() {
+        override fun areItemsTheSame(oldItem: ExchangedMoney, newItem: ExchangedMoney): Boolean {
             return oldItem == newItem
         }
 
         override fun areContentsTheSame(
-            oldItem: CurrencyAmount,
-            newItem: CurrencyAmount
+            oldItem: ExchangedMoney,
+            newItem: ExchangedMoney
         ): Boolean {
             return oldItem.currency == newItem.currency
         }
@@ -123,7 +135,7 @@ class ConvertedAmountsAdapter :
 
 class ConvertedAmountViewHolder(private val binding: ItemCurrencyDropdownBinding) :
     ViewHolder(binding.root) {
-    fun bind(item: CurrencyAmount) {
+    fun bind(item: ExchangedMoney) {
         binding.txtCurrency.text = item.currency
         binding.txtValue.text = item.value.toString()
     }
