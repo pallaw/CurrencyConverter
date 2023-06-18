@@ -18,12 +18,13 @@ package com.pallaw.currencyconverter.ui.exchangerates
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.pallaw.currencyconverter.ui.model.ConvertedAmount
 import com.pallaw.currencyconverter.domain.usecase.GetExchangeRatesUseCase
+import com.pallaw.currencyconverter.ui.model.ConvertedAmount
 import com.pallaw.currencyconverter.util.Const
 import com.pallaw.currencyconverter.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import java.text.DecimalFormat
 import javax.inject.Inject
@@ -33,27 +34,23 @@ class ExchangeRateViewModel @Inject constructor(
     private val getExchangeRatesUseCase: GetExchangeRatesUseCase,
 ) : ViewModel() {
 
-    private val _exchangeRatesUiState = MutableStateFlow<ExchangeRateUiState>(ExchangeRateUiState.Empty)
-    val exchangeRatesUiState get() = _exchangeRatesUiState
-
-    init {
-        convertRates(
-            "1",
-            "USD"
-        )
-    }
+    private val _exchangeRatesUiState =
+        MutableStateFlow<ExchangeRateUiState>(ExchangeRateUiState.Empty)
+    val exchangeRatesUiState get() = _exchangeRatesUiState.asStateFlow()
 
     fun convertRates(
         amountStr: String,
         fromCurrency: String
     ) {
 
+        //amount validation
         val fromAmount = amountStr.toFloatOrNull()
         if (fromAmount == null) {
             _exchangeRatesUiState.value = ExchangeRateUiState.Failure("Not a valid amount")
             return
         }
 
+        //currency code validation
         if (!Const.currencyCodes.contains(fromCurrency.uppercase())) {
             _exchangeRatesUiState.value = ExchangeRateUiState.Failure("Not a valid ")
             return
@@ -62,8 +59,10 @@ class ExchangeRateViewModel @Inject constructor(
         viewModelScope.launch {
             _exchangeRatesUiState.value = ExchangeRateUiState.Loading
             getExchangeRatesUseCase.getExchangeRates().collect { exchangeRateResource ->
-                when(exchangeRateResource) {
-                    is Resource.Error -> _exchangeRatesUiState.value = ExchangeRateUiState.Failure(exchangeRateResource.message!!)
+                when (exchangeRateResource) {
+                    is Resource.Error -> _exchangeRatesUiState.value =
+                        ExchangeRateUiState.Failure(exchangeRateResource.message!!)
+
                     is Resource.Success -> {
                         val exchangeRateMap = exchangeRateResource.data!!.rates
                         if (exchangeRateMap.isEmpty()) {
@@ -74,12 +73,14 @@ class ExchangeRateViewModel @Inject constructor(
                             val fromRate = exchangeRateMap[fromCurrency] ?: 0.0
                             val convertedAmountList = exchangeRateEntryList.map {
                                 val toRate = it.second
-                                val convertedAmount = fromAmount!!.times((fromRate / toRate))
-                                val formattedAmount = DecimalFormat("#.##").format(convertedAmount).toDouble()
+                                val convertedAmount = fromAmount.times((fromRate / toRate))
+                                val formattedAmount =
+                                    DecimalFormat("#.##").format(convertedAmount).toDouble()
 
                                 ConvertedAmount(it.first, formattedAmount)
                             }
-                            _exchangeRatesUiState.value = ExchangeRateUiState.Success(convertedAmountList)
+                            _exchangeRatesUiState.value =
+                                ExchangeRateUiState.Success(convertedAmountList)
                         }
                     }
                 }
@@ -89,9 +90,3 @@ class ExchangeRateViewModel @Inject constructor(
 
 }
 
-sealed class ExchangeRateUiState {
-    class Success(val convertedRates: List<ConvertedAmount>) : ExchangeRateUiState()
-    class Failure(val errorText: String) : ExchangeRateUiState()
-    object Loading : ExchangeRateUiState()
-    object Empty : ExchangeRateUiState()
-}

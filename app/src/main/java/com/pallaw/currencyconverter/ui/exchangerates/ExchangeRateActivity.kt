@@ -40,31 +40,28 @@ class ExchangeRateActivity : ComponentActivity() {
     private lateinit var binding: ExchnageRateActivityBinding
     private val viewmodel:ExchangeRateViewModel by viewModels()
 
+    private val convertedAmountListAdapter by lazy { ConvertedAmountListAdapter() }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ExchnageRateActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val arrayAdapter = ArrayAdapter(this, R.layout.item_drop_down, Const.currencyCodes)
-        binding.autoCompleteTextView.apply {
-            inputType = InputType.TYPE_NULL
-            setAdapter(arrayAdapter)
-            setText(adapter.getItem(0).toString(), false)
-            setOnItemClickListener { parent, view, position, id ->
-                val selectedItem = parent.getItemAtPosition(position) as String
-                viewmodel.convertRates(binding.edtAmount.text.toString(), selectedItem)
-            }
-        }
+        //Setup ui data and actions
+        setupUi()
 
+        //Observe UI state
+        observeUiState()
 
-        val convertedAmountListAdapter = ConvertedAmountListAdapter()
-        binding.rvConvertedAmounts.apply {
-            setHasFixedSize(true)
-            adapter = convertedAmountListAdapter
-            layoutManager = LinearLayoutManager(this@ExchangeRateActivity)
-        }
+        //call for initial data
+        viewmodel.convertRates(
+            binding.edtAmount.text.toString(),
+            binding.autoCompleteTextView.text.toString()
+        )
 
+    }
 
+    private fun observeUiState() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewmodel.exchangeRatesUiState.collect { uiState ->
@@ -80,16 +77,36 @@ class ExchangeRateActivity : ComponentActivity() {
                 }
             }
         }
+    }
+
+    private fun setupUi() {
+        //setup currency code dropdown
+        val arrayAdapter = ArrayAdapter(this, R.layout.item_drop_down, Const.currencyCodes)
+        binding.autoCompleteTextView.apply {
+            inputType = InputType.TYPE_NULL
+            setAdapter(arrayAdapter)
+            setText(adapter.getItem(0).toString(), false)
+            setOnItemClickListener { parent, view, position, id ->
+                val selectedItem = parent.getItemAtPosition(position) as String
+                viewmodel.convertRates(binding.edtAmount.text.toString(), selectedItem)
+            }
+        }
 
 
+        //setup converted amounts list
+        binding.rvConvertedAmounts.apply {
+            setHasFixedSize(true)
+            adapter = convertedAmountListAdapter
+            layoutManager = LinearLayoutManager(this@ExchangeRateActivity)
+        }
 
+        //setup amount edittext action
         binding.edtAmount.doAfterTextChanged {
             viewmodel.convertRates(
                 it?.toString() ?: "",
                 binding.autoCompleteTextView.text.toString()
             )
         }
-
     }
 }
 

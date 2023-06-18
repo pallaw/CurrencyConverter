@@ -25,6 +25,5 @@ object UtilModule {
             get() = Dispatchers.Default
         override val unconfined: CoroutineDispatcher
             get() = Dispatchers.Unconfined
-//        TODO what is unconfined dispatcher
     }
 }

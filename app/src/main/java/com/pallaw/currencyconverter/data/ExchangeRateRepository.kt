@@ -1,17 +1,13 @@
 package com.pallaw.currencyconverter.data
 
 
-import android.util.Log
 import com.pallaw.currencyconverter.data.local.database.dao.ExchangeRateDao
 import com.pallaw.currencyconverter.data.local.database.entity.ExchangeRateEntity
 import com.pallaw.currencyconverter.data.remote.ExchangeRateService
-import com.pallaw.currencyconverter.data.remote.model.ExchangeRateDto
 import com.pallaw.currencyconverter.domain.ExchangeRateRepositoryInterface
 import com.pallaw.currencyconverter.util.Resource
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.CoroutineScope
+import com.pallaw.currencyconverter.util.toExchangeRateEntity
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.flow
 import java.util.concurrent.TimeUnit
@@ -36,7 +32,7 @@ class ExchangeRateRepository @Inject constructor(
             }
 
             val lastUpdateTime = localData?.firstOrNull()?.timestamp ?: 0L
-            val currentTime = System.currentTimeMillis()/1000
+            val currentTime = System.currentTimeMillis() / 1000
             val elapsedTimeMinutes = TimeUnit.MILLISECONDS.toMinutes(currentTime - lastUpdateTime)
 
             if (elapsedTimeMinutes >= FETCH_INTERVAL_MINUTES) {
@@ -55,14 +51,5 @@ class ExchangeRateRepository @Inject constructor(
             }
 
         }
-    }
-
-
-    private fun ExchangeRateDto.toExchangeRateEntity(): ExchangeRateEntity {
-        return ExchangeRateEntity(
-            base = base,
-            timestamp = timestamp,
-            rates = rates
-        )
     }
 }
