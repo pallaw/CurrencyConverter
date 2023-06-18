@@ -18,6 +18,7 @@ package com.pallaw.currencyconverter.ui.exchangerates
 
 import android.os.Bundle
 import android.text.InputType
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -66,17 +67,24 @@ class ExchangeRateActivity : ComponentActivity() {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewmodel.exchangeRatesUiState.collect { uiState ->
                     when (uiState) {
-                        ExchangeRateUiState.Empty -> Toast.makeText(this@ExchangeRateActivity, "Empty", Toast.LENGTH_SHORT).show()
+                        ExchangeRateUiState.Empty -> {
+                            toggleEmptyConvertedAmountList(true)
+                        }
                         is ExchangeRateUiState.Failure -> Toast.makeText(this@ExchangeRateActivity, "Error ${uiState.errorText}", Toast.LENGTH_SHORT).show()
                         ExchangeRateUiState.Loading -> Toast.makeText(this@ExchangeRateActivity, "Loading Data", Toast.LENGTH_SHORT).show()
                         is ExchangeRateUiState.Success -> {
-                            Toast.makeText(this@ExchangeRateActivity, "Success: ${uiState.convertedRates}", Toast.LENGTH_SHORT).show()
+                            toggleEmptyConvertedAmountList(false)
                             convertedAmountListAdapter.submitList(uiState.convertedRates)
                         }
                     }
                 }
             }
         }
+    }
+
+    private fun toggleEmptyConvertedAmountList(isEmpty: Boolean) {
+        binding.txtEmpty.visibility = if (isEmpty) View.VISIBLE else View.GONE
+        binding.rvConvertedAmounts.visibility = if (!isEmpty) View.VISIBLE else View.GONE
     }
 
     private fun setupUi() {
